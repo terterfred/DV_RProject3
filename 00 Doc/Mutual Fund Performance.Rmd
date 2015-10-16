@@ -1,0 +1,53 @@
+---
+title: "Mutual Funds"
+output: html_document
+---
+
+###This is how my RStudio is configured:
+```{r}
+sessionInfo()
+```
+
+
+###This is the subset and summary of the Mutual Fund data set used
+
+```{r}
+source("../02 Data Wrangling/SQL To R.R", echo = FALSE)
+head(GF)
+summary(GF)
+```
+
+###This is the subset and summary of the Market data set used
+
+```{r}
+source("../02 Data Wrangling/SQL To R.R", echo = FALSE)
+head(FF)
+summary(FF)
+```
+
+####This is the first plot
+```{r}
+source("../03 Visualizations/Plot 1.R", echo = TRUE)
+```
+
+Plot 1: Most mutual funds do not outperform the market (inner join)
+We compared the return from mutual funds and the return of S&P500 in the same period. More than half of the returns from mutual fund were below market return. This shows that many mutual funds falsly claim that they can outperform the market. (Then there is also the possibility that those outperformed the market was by luck)
+
+
+####This is the second plot
+```{r}
+source("../03 Visualizations/Plot 2.R", echo = TRUE)
+```
+
+Plot 2: The beta of the fund (outer join)
+In this plot, we used a regression to find the correlation between the market premium (return on market - risk free rate) and the fund return premium (return on fund - risk free rate). The coefficient we found suggested a positive beta. Whether any of the funds have positive alpha would need furthur investigation.
+
+
+####This is the third plot
+```{r}
+source("../03 Visualizations/Plot 3.R", echo = TRUE)
+```
+
+Plot 3: Time series of future return (anti join)
+We used anti-join to minimize the effect of missing data on risk free rate from the market data
+We tried to use a time series to predict future returns of individual funds. The volatility found from the time series plot suggests that such analyze might not lead to the most accurate prediction.
